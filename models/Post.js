@@ -1,6 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
-const User = require('./User');
 
 class Post extends Model {}
 
@@ -22,9 +21,6 @@ Post.init({
             key: 'username'
         }
     },
-    date_created: {
-        type: DataTypes.DATE, 
-    }
 },{
     sequelize,
     timestamps: false,

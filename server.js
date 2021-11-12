@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3000;
 
 const hbs = exphbs.create({});
 
-const {User} = require('./models');
+const {User, Post, Comment} = require('./models');
 const routes = require("./controllers");
 
 
