@@ -10,18 +10,18 @@ postForm.addEventListener("click",(evt)=>{
     //     email:document.querySelector("#email").value,
     //     password:document.querySelector("#password").value,
     // }
-    // fetch("/api/users/login",{
-    //     method:"POST",
-    //     body:JSON.stringify(userObj),
-    //     headers:{
-    //         "Content-Type":"application/json"
-    //     }
-    // }).then(res=>{
-    //     if(res.ok){
-    //        location.href = "/home"
-    //     } else {
-    //         console.log(userObj)
-    //         alert("username or password is incorrect!")
-    //     }
-    // })
+    fetch("/api/posts",{
+        method:"POST",
+        body:JSON.stringify(userObj),
+        headers:{
+            "Content-Type":"application/json"
+        }
+    }).then(res=>{
+        if(res.ok){
+           location.href = "/home"
+        } else {
+            console.log(userObj)
+            alert("post was not created")
+        }
+    })
 })

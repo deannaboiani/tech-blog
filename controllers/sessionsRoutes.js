@@ -14,12 +14,6 @@ router.get("/addcounter",(req,res)=>{
     res.send("count updated!")
 })
 
-router.get("/secretclub",(req,res)=>{
-    if(req.session.user){
-        res.send(`welcome to the secret club, ${req.session.user.username}!`)
-    } else{
-        res.status(401).send("login first to see the secret club")
-    }
-})
+
 
 module.exports = router;

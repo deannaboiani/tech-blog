@@ -29,10 +29,8 @@ router.get("/:id",(req,res)=>{
 })
 
 router.post("/",(req,res)=>{
-    // const encryptedPassword = bcrypt.hashSync(req.body.password,3);
     User.create({
         username:req.body.username,
-        // password:encryptedPassword,
         password:req.body.password,
         email:req.body.email
     }).then(newUser=>{

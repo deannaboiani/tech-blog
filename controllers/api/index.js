@@ -7,6 +7,9 @@ router.use("/users",userController);
 const postController = require("./postController");
 router.use("/posts",postController);
 
+const commentController = require("./commentController");
+router.use("/comments",commentController);
+
 router.get("/",(req,res)=>{
     res.send("hello from api!")
 })

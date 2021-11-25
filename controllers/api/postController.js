@@ -25,9 +25,9 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-    // if(!req.session.user){
-    //   return res.status(401).send("log in first you knucklehead!")
-    // }
+    if(!req.session.user){
+      return res.status(401).send("log in first!")
+    }
     Post.create({
         id:req.body.id, 
         post_title:req.body.post_title,
@@ -44,15 +44,15 @@ router.post("/", (req, res) => {
   });
 
   router.put("/:id", (req, res) => {
-    // if (!req.session.user) {
-    //     return res.status(403).json({ err: "login first dood" });
-    //   }
+    if (!req.session.user) {
+        return res.status(403).json({ err: "login first!" });
+      }
     Post.findByPk(req.params.id)
     .then(foundPost => {
         res.json(foundPost);
-        // if (req.session.user.id !== foundRev.UserId) {
-        //   return res.status(403).json({ err: "not your post!" });
-        // }
+        if (req.session.user.id !== foundRev.UserId) {
+          return res.status(403).json({ err: "not your post!" });
+        }
         Post.update(
           {
             post_title: req.body.post_title,
@@ -74,15 +74,15 @@ router.post("/", (req, res) => {
   });
 
   router.delete("/:id", (req, res) => {
-    // if (!req.session.user) {
-    //     return res.status(403).json({ err: "login first dood" });
-    //   }
+    if (!req.session.user) {
+        return res.status(403).json({ err: "login first!" });
+      }
     Post.findByPk(req.params.id)
     .then(foundPost => {
         res.json(foundPost);
-        // if (req.session.user.id !== foundPost.UserId) {
-        //   return res.status(403).json({ err: "not your post!" });
-        // }
+        if (req.session.user.id !== foundPost.UserId) {
+          return res.status(403).json({ err: "not your post!" });
+        }
         Post.destroy({
           where: {
             id: req.params.id
@@ -92,7 +92,7 @@ router.post("/", (req, res) => {
             if (delPost) {
               res.json(delPost);
             } else {
-              res.status(404).json({ err: "no such post found!" });
+              res.status(404).json({ err: "no post found!" });
             }
           })
           .catch(err => {
