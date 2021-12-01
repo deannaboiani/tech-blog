@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const { User, Comment} = require('../../models');
+const { User, Comment, Post} = require('../../models');
 
 router.get("/",(req,res)=> {
     Comment.findAll({
-        include:[User]
+        include:[User,Post]
     }).then(postData=>{
       res.json(postData);
     }).catch(err => {
